@@ -40,6 +40,10 @@ public:
     // TODO Step 5: move assignment
     // TODO Step 4: destructor
 
+	~Array() {
+    	delete[] buf;
+		}
+
     int length() const {
         return len;
     }

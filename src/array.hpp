@@ -30,6 +30,26 @@ public:
 		other.len = 0;
 		other.buf = nullptr;
 		}
+	
+	friend void swap(Array& lhs, Array& rhs) noexcept {
+    	std::swap(lhs.len, rhs.len);
+    	std::swap(lhs.buf, rhs.buf);
+	}
+
+	Array& operator=(const Array& other){
+		Array temp{other};
+		swap(*this, temp);
+		return *this;
+
+	}
+
+	Array& operator=(Array&& other) noexcept{
+		Array temp{std::move(other)};
+		swap(*this, temp);
+		returm *this;
+	
+
+	}
 
 private:
     int len;

@@ -39,3 +39,18 @@ TEST(ArrayTests, StringArray) {
 
     EXPECT_EQ(arr.length(), 2);
 }
+
+TEST(ArrayTemplate, CopyConstructor) {
+    Array<int> a{5};
+    Array<int> b{a};
+
+    EXPECT_EQ(b.length(), 5);
+}
+
+TEST(ArrayTemplate, MoveConstructor) {
+    Array<double> a{3};
+    Array<double> b{std::move(a)};
+
+    EXPECT_EQ(b.length(), 3);
+    EXPECT_EQ(a.length(), 0);
+}

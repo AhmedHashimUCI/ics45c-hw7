@@ -58,31 +58,38 @@ TEST(IntArrayTests, Read) {
      EXPECT_ANY_THROW(arr[11]);
 }
 
-TEST(Array, SubscriptNegative) {
+TEST(IntArrayTests, SubscriptNegative) {
     Array arr{3};
 
     EXPECT_THROW(arr[-1], std::string);
 }
 
-TEST(Array, SubscriptAtSize) {
+TEST(IntArrayTests, SubscriptAtSize) {
     Array arr{3};
 
     EXPECT_THROW(arr[3], std::string);
 }
 
-// TEST(IntArrayTests, CopyConstructor) {
-//     Array arr{10};
-//     arr.fill(20);
-//     Array arr2{arr};
-//     EXPECT_EQ(arr2.length(), 10);
-//     EXPECT_EQ(arr2[0], 20);
-//     EXPECT_EQ(arr2[9], 20);
-//
-//     Array empty;
-//     Array arr3{empty};
-//     EXPECT_EQ(arr3.length(), 0);
-// }
-//
+TEST(IntArrayTests, CopyConstructor) {
+	Array arr{10};
+    arr.fill(20);
+    Array arr2{arr};
+    EXPECT_EQ(arr2.length(), 10);
+    EXPECT_EQ(arr2[0], 20);
+	EXPECT_EQ(arr2[9], 20);
+
+    Array empty; 
+	Array arr3{empty};
+    EXPECT_EQ(arr3.length(), 0);
+}
+
+TEST(IntArrayTests, CopyEmpty) {
+    Array a{};
+    Array b{a};
+
+    EXPECT_EQ(b.length(), 0);
+}
+
 // TEST(IntArrayTests, MoveConstructor) {
 //     AllocationTracker tracker;
 //

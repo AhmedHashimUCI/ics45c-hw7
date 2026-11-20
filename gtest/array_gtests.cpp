@@ -86,3 +86,68 @@ TEST(ArrayTests, Swap) {
     EXPECT_EQ(b.length(), 3);
 }
 
+
+TEST(ArrayTests, FillInteger) {
+    Array<int> a{5};
+    a.fill(7);
+
+    for (int i = 0; i < a.length(); ++i) {
+        EXPECT_EQ(a[i], 7);
+    }
+}
+
+TEST(ArrayTests, FillString) {
+    Array<std::string> a{3};
+    a.fill("hello");
+
+    for (int i = 0; i < a.length(); ++i) {
+        EXPECT_EQ(a[i], "hello");
+    }
+}
+
+TEST(ArrayTests, FillWithLambda) {
+    Array<int> a{5};
+
+    a.fill_with_fn([](int i) {
+        return i * i;
+    });
+
+    EXPECT_EQ(a[0], 0);
+    EXPECT_EQ(a[1], 1);
+    EXPECT_EQ(a[2], 4);
+    EXPECT_EQ(a[3], 9);
+    EXPECT_EQ(a[4], 16);
+}
+
+TEST(ArrayTests, FillWithCapture) {
+    Array<int> a{4};
+    int multiplier = 3;
+
+    a.fill_with_fn([multiplier](int i) {
+        return i * multiplier;
+    });
+
+    EXPECT_EQ(a[0], 0);
+    EXPECT_EQ(a[1], 3);
+    EXPECT_EQ(a[2], 6);
+    EXPECT_EQ(a[3], 9);
+}
+
+TEST(ArrayTests, OutOfBounds) {
+    Array<double> a{3};
+
+    EXPECT_THROW(a[-1], std::string);
+    EXPECT_THROW(a[3], std::string);
+}
+
+TEST(ArrayTests, DeepCopy) {
+    Array<std::string> a{3};
+    a.fill("original");
+
+    Array<std::string> b{a};
+    b[0] = "changed";
+
+    EXPECT_EQ(a[0], "original");
+    EXPECT_EQ(b[0], "changed");
+}
+

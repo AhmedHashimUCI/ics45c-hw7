@@ -51,6 +51,35 @@ public:
 
 	}
 
+	T& operator[](int index){
+		if(!in_bounds(index)){
+			 throw "Exception operator[](" + std::to_string(index) + ") Out Of Range";
+
+		}
+		return buf[index];
+	}
+
+	const T& operator[](int index) const {
+    if (!in_bounds(index)) {
+        throw "Exception operator[](" + std::to_string(index) + ") Out Of Range";
+    }
+
+    return buf[index];
+}
+
+	void fill(const T& val) {
+    for (int i = 0; i < len; ++i) {
+        buf[i] = val;
+    }
+}
+
+	template <typename Fn>
+	void fill_with_fn(Fn fn) {
+    	for (int i = 0; i < len; ++i) {
+        	buf[i] = fn(i);
+    	}
+}
+
 	~Array(){
 		delete[] buf;
 	}
@@ -58,6 +87,11 @@ public:
 private:
     int len;
     T* buf;
+
+	bool in_bounds(int index) const {
+    	return index >= 0 && index < len;
+	}
+
 };
 
 #endif

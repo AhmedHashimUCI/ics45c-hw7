@@ -42,9 +42,20 @@ public:
 	}
 
     // TODO Step 5: copy assignment
-    // TODO Step 5: move assignment
-    // TODO Step 4: destructor
+	Array& operator=(const Array& other){
+		Array temp{other};
+		swap(*this, temp);
+		return *this;
+	}
 
+    // TODO Step 5: move assignment
+	Array& operator=(Array&& other) noexcept{
+		Array temp{std::move(other)};
+		swap(*this, temp);
+		return *this;
+	}
+
+    // TODO Step 4: destructor
 	~Array() {
     	delete[] buf;
 		}

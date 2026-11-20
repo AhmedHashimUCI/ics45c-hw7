@@ -4,7 +4,7 @@
 
 #include "alloc.hpp"
 #include "int_array.hpp"
-
+#include <string>
 using namespace std;
 
 TEST(IntArrayTests, Length) {
@@ -45,19 +45,31 @@ TEST(IntArrayTests, Read) {
     EXPECT_EQ(arr[2], 3);
 }
 
-// TEST(IntArrayTests, Fill) {
-//     Array arr{10};
-//     arr.fill(20);
-//     EXPECT_EQ(arr[0], 20);
-//     arr.fill(5);
-//     EXPECT_EQ(arr[9], 5);
-// }
-//
-// TEST(IntArrayTests, OutOfBounds) {
-//     Array arr{10};
-//     EXPECT_ANY_THROW(arr[11]);
-// }
-//
+ TEST(IntArrayTests, Fill) {
+     Array arr{10};
+     arr.fill(20);
+     EXPECT_EQ(arr[0], 20);
+     arr.fill(5);
+     EXPECT_EQ(arr[9], 5);
+}
+
+ TEST(IntArrayTests, OutOfBounds) {
+     Array arr{10};
+     EXPECT_ANY_THROW(arr[11]);
+}
+
+TEST(Array, SubscriptNegative) {
+    Array arr{3};
+
+    EXPECT_THROW(arr[-1], std::string);
+}
+
+TEST(Array, SubscriptAtSize) {
+    Array arr{3};
+
+    EXPECT_THROW(arr[3], std::string);
+}
+
 // TEST(IntArrayTests, CopyConstructor) {
 //     Array arr{10};
 //     arr.fill(20);

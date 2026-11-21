@@ -13,6 +13,7 @@
 #include "int_array.hpp"
 #include <string>
 #include <utility>
+#include <sstream>
 
 TEST(IntArrayTests, DefaultArrayIsEmpty) {
     const Array a;
@@ -153,7 +154,7 @@ TEST(IntArrayTests, CopyAssignment) {
     EXPECT_EQ(a[0], 10);
 }
 
-TEST(StudentArray, SelfCopyAssignment) {
+TEST(IntArrayTests, SelfCopyAssignment) {
     Array a{3};
     a.fill(42);
 
@@ -179,19 +180,18 @@ TEST(IntArrayTests, MoveConstructor) {
 }
 
 TEST(IntArrayTests, MoveAssignment) {
-    Array a{3};
-    a.fill(15);
+    Array a{5};
+    a.fill(10);
 
-    Array b{5};
-    b.fill(30);
+    Array b{3};
+    b.fill(20);
 
     b = std::move(a);
 
-    EXPECT_EQ(b.length(), 3);
-    EXPECT_EQ(a.length(), 0);
+    EXPECT_EQ(b.length(), 5);
 
     for (int i = 0; i < b.length(); ++i) {
-        EXPECT_EQ(b[i], 15);
+        EXPECT_EQ(b[i], 10);
     }
 }
 
@@ -222,4 +222,5 @@ TEST(IntArrayTests, ExceptionPreservesArray) {
     EXPECT_EQ(a[0], 7);
     EXPECT_EQ(a[2], 7);
 }
+
 

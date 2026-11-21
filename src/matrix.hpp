@@ -27,6 +27,7 @@ private:
     Array<Array<T>> data;
 };
 
+
 template <typename T>
 Matrix<T>::Matrix()
     : rows{0}, cols{0}, data{} {
@@ -82,7 +83,7 @@ void Matrix<T>::fill_with_fn(Fn fn) {
 
 
 template <typename T>
-std::ostream& operator<<(std::ostream& out, const Matrix<T>& matrix)
+std::ostream& operator<<(std::ostream& out, const Matrix<T>& matrix){
     for (int i = 0; i < matrix.num_rows(); ++i) {
         for (int j = 0; j < matrix.num_cols(); ++j) {
             if (j > 0) {
@@ -109,9 +110,7 @@ std::istream& operator>>(std::istream& in, Matrix<T>& matrix){
     return in;
 }
 
-
-// ... definitions follow
-
-
 #endif
+
+
 

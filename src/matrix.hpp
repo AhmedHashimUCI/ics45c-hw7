@@ -51,7 +51,35 @@ int Matrix<T>::num_cols() const {
     return cols;
 }
 
-#endif
+template <typename T>
+Array<T>& Matrix<T>::operator[](int row) {
+    return data[row];
+}
+
+template <typename T>
+const Array<T>& Matrix<T>::operator[](int row) const {
+    return data[row];
+}
+
+
+template <typename T>
+void Matrix<T>::fill(const T& val) {
+    for (int i = 0; i < rows; ++i) {
+        data[i].fill(val);
+    }
+}
+
+
+template <typename T>
+template <typename Fn>
+void Matrix<T>::fill_with_fn(Fn fn) {
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            data[i][j] = fn(i, j);
+        }
+    }
+}
+
 
 template <typename T>
 std::ostream& operator<<(std::ostream& out, const Matrix<T>& matrix);

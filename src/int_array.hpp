@@ -68,7 +68,7 @@ public:
         // TODO Step 3: throw std::string when the index is out of bounds:
         //     "Exception operator[](" + std::to_string(index) + ") Out Of Range"
 		if(!in_bounds(index)){
-			throw "Exception operator[] (" + std::to_string(index) + ") Out Of Range";
+			throw "Exception operator[](" + std::to_string(index) + ") Out Of Range";
 		}
 
         return buf[index];
@@ -77,8 +77,7 @@ public:
     const int& operator[](int index) const {
         // TODO Step 3: the same check as above
 		if (!in_bounds(index)) {
-        throw "Exception operator[](" +
-            std::to_string(index) + ") Out Of Range";
+        	throw "Exception operator[](" + std::to_string(index) + ") Out Of Range";
     }
         return buf[index];
     }

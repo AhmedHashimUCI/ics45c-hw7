@@ -19,3 +19,30 @@ TEST(MatrixTests, RowsAndCols) {
     EXPECT_EQ(mat3.num_rows(), 0);
     EXPECT_EQ(mat3.num_cols(), 0);
 }
+
+
+TEST(MatrixTemplate, DefaultConstructor) {
+    Matrix<int> mat;
+
+    EXPECT_EQ(mat.num_rows(), 0);
+    EXPECT_EQ(mat.num_cols(), 0);
+}
+
+TEST(MatrixTemplate, ParameterizedConstructor) {
+    Matrix<int> mat{3, 4};
+
+    EXPECT_EQ(mat.num_rows(), 3);
+    EXPECT_EQ(mat.num_cols(), 4);
+}
+
+TEST(MatrixTemplate, DifferentTypes) {
+    Matrix<double> a{2, 5};
+    Matrix<char> b{4, 3};
+
+    EXPECT_EQ(a.num_rows(), 2);
+    EXPECT_EQ(a.num_cols(), 5);
+
+    EXPECT_EQ(b.num_rows(), 4);
+    EXPECT_EQ(b.num_cols(), 3);
+}
+
